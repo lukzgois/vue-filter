@@ -24,45 +24,15 @@
 
 <script>
 import Dropdown from './components/Dropdown'
+import {items, header, footer} from './filterConfig'
 
 export default {
   name: 'app',
   data () {
     return {
-      items: [{
-        id: 1,
-        text: 'Ready to start'
-      }, {
-        id: 2,
-        text: 'In Progress'
-      }, {
-        id: 3,
-        text: 'Evaluating'
-      }, {
-        id: 4,
-        text: 'Ready to Test'
-      }, {
-        id: 5,
-        text: 'Awaiting deploy'
-      }, {
-        id: 5,
-        text: 'Other State'
-      }, {
-        id: 5,
-        text: 'Closed'
-      }],
-      footer: [{
-        text: 'Create new user'
-      }, {
-        text: 'Manage users'
-      }],
-      header: [{
-        id: 'any',
-        text: 'Any Label'
-      }, {
-        id: 'none',
-        text: 'No Label'
-      }],
+      items,
+      header,
+      footer,
       filterValue: null,
       filterStatus: 'closed',
       filterInput: ''
@@ -86,23 +56,6 @@ export default {
 }
 </script>
 
-<style>
-  @import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro';
-
-  body {
-    background: #f1f1f1;
-    font-family: "Source Sans Pro"
-  }
-
-  .filter-container {
-    display: flex;
-  }
-
-  .filter {
-    margin-left: 10px
-  }
-
-  .filter:first-child {
-    margin-left: 0
-  }
+<style lang="sass">
+  @import './css/vue-filter'
 </style>
