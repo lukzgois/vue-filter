@@ -70,6 +70,14 @@ export default {
       }
     })
   },
+  mounted () {
+    document.querySelector('.dropdown-content').addEventListener('scroll', (e) => {
+      let target = e.target
+      if (target.clientHeight + target.scrollTop === target.scrollHeight) {
+        this.$emit('filter-bottom-was-reached')
+      }
+    })
+  },
   methods: {
     isFilterElement (e) {
       if (!e.parentNode || e.parentNode.toString() === '[object HTMLDocument]') {

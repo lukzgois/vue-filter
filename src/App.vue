@@ -11,12 +11,14 @@
         @filter-closed="filterWasClosed"
         @filter-opened="filterWasOpened"
         @filter-input="filterWasFiltered"
+        @filter-bottom-was-reached="filterWasScrolled"
       ></dropdown>
 
       <div style="margin-left: 180px; line-height: 140%">
         Filter is: {{ filterStatus }} <br>
         Selected Value: {{ filterValue }} <br>
         Filter Input Value: {{ filterInput }} <br>
+        Filter was scrolled to bottom: {{ filterBottom }} <br>
       </div>
     </div>
   </div>
@@ -35,6 +37,7 @@ export default {
       footer,
       filterValue: null,
       filterStatus: 'closed',
+      filterBottom: false,
       filterInput: ''
     }
   },
@@ -51,6 +54,9 @@ export default {
     },
     filterWasFiltered (value) {
       this.filterInput = value
+    },
+    filterWasScrolled () {
+      this.filterBottom = true
     }
   }
 }
