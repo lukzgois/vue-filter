@@ -27,13 +27,15 @@
             >{{ item.text }}</a>
           </li>
         </ul>
-        <ul>
+        <ul class="dropdown-items">
           <li v-for="item in items">
             <a
               href="#"
               @click.prevent="handleItemClick(item, $event)"
             >{{ item.text }}</a>
           </li>
+          <!-- Bottom message -->
+          <li class="bottom-message" v-show="bottomMessage" v-html="bottomMessage"></li>
         </ul>
       </div>
 
@@ -54,8 +56,10 @@
 </template>
 
 <script>
+import debounce from '../utils/debounce'
+
 export default {
-  props: ['button-text', 'title', 'items', 'footer', 'searchable', 'header', 'is-loading'],
+  props: ['button-text', 'title', 'items', 'footer', 'searchable', 'header', 'is-loading', 'bottom-message'],
   data () {
     return {
       isOpen: false,
@@ -71,12 +75,14 @@ export default {
     })
   },
   mounted () {
-    document.querySelector('.dropdown-content').addEventListener('scroll', (e) => {
+    // Adding an event listener to the dropdown scroll event, so we can fire an event when the user scrolls to the
+    // bottom of the filter items list. Using debounce to increase performance.
+    this.$refs.dropdown.querySelector('.dropdown-content').addEventListener('scroll', debounce((e) => {
       let target = e.target
       if (target.clientHeight + target.scrollTop === target.scrollHeight) {
         this.$emit('filter-bottom-was-reached')
       }
-    })
+    }, 250))
   },
   methods: {
     isFilterElement (e) {

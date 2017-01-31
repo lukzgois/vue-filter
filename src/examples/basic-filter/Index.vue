@@ -62,7 +62,3 @@ export default {
   }
 }
 </script>
-
-<style lang="sass">
-  @import '../../css/vue-filter'
-</style>

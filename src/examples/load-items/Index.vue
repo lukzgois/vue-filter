@@ -1,17 +1,16 @@
 <template>
   <div id="app">
-    <h3>Ajax Loader <small>(simulating an ajax request to server)</small></h3>
+    <h3>Loading item when user scroll to bottom</h3>
     <div class="filter-container">
       <dropdown
         title="Filter by label"
         button-text="Labels"
         :items="items"
         :footer="footer"
-        :is-loading="loading"
         :searchable="true"
         :header="header"
-        @filter-opened="filterWasOpened"
-        @filter-closed="filterWasClosed"
+        :bottom-message="bottomMessage"
+        @filter-bottom-was-reached="loadItems"
       ></dropdown>
     </div>
   </div>
@@ -25,27 +24,28 @@ export default {
   name: 'app',
   data () {
     return {
-      items: {},
+      items,
       header,
       footer,
-      loading: true,
-      timeout: null
+      bottomMessage: null
     }
   },
   components: {
     Dropdown
   },
   methods: {
-    filterWasOpened () {
-      this.timeout = setTimeout(() => {
-        this.items = items
-        this.loading = false
-      }, 500)
-    },
-    filterWasClosed () {
-      clearTimeout(this.timeout)
-      this.loading = true
-      this.items = {}
+    loadItems () {
+      this.bottomMessage = '<i class="fa fa-spinner fa-pulse fa-fw"></i>Carregando items...'
+      setTimeout(() => {
+        this.bottomMessage = null
+        this.items.push({
+          id: 6,
+          text: 'Other State'
+        }, {
+          id: 7,
+          text: 'Closed'
+        })
+      }, 1000)
     }
   }
 }
