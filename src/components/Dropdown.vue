@@ -70,15 +70,21 @@ export default {
     },
     header: {
       type: Array,
-      default: []
+      default: () => {
+        return []
+      }
     },
     items: {
       type: Array,
-      default: []
+      default: () => {
+        return []
+      }
     },
     footer: {
       type: Array,
-      default: []
+      default: () => {
+        return []
+      }
     },
     searchable: {
       type: Boolean,
