@@ -4,7 +4,7 @@
     <div class="filter-container">
       <dropdown
         title="Filter by label"
-        button-text="Labels"
+        text="Labels"
         :items="items"
         :footer="footer"
         :is-loading="loading"

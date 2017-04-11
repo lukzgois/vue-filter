@@ -1,9 +1,15 @@
 <template>
   <div class="filter" :class="isOpen ? 'dropdown-open' : ''" ref="dropdown">
-    <button class="dropdown-menu-toggle" @click="isOpen = !isOpen">
-      {{ buttonText }}
+
+    <button v-if="!renderAsLink" class="dropdown-menu-toggle" @click="isOpen = !isOpen">
+      {{ text }}
       <i class="fa fa-angle-down" aria-hidden="true"></i>
     </button>
+
+    <a href="#" v-if="renderAsLink" class="dropdown-menu-toggle-link" @click="isOpen = !isOpen">
+      {{ text }}
+      <i class="fa fa-angle-down" aria-hidden="true"></i>
+    </a>
 
     <div class="dropdown-menu">
       <div class="dropdown-title">
@@ -60,9 +66,8 @@ import debounce from '../utils/debounce'
 
 export default {
   props: {
-    buttonText: {
-      type: String,
-      default: 'Filter'
+    text: {
+      type: String
     },
     title: {
       type: String,
@@ -97,6 +102,10 @@ export default {
     bottomMessage: {
       type: String,
       default: ''
+    },
+    renderAsLink: {
+      type: Boolean,
+      default: false
     }
   },
   data () {

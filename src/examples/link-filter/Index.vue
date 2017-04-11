@@ -4,23 +4,12 @@
     <div class="filter-container">
       <dropdown
         title="Filter by label"
-        text="Labels"
+        text="My Link"
+        :render-as-link="true"
         :items="items"
         :footer="footer"
-        :searchable="true"
         :header="header"
-        @filter-closed="filterWasClosed"
-        @filter-opened="filterWasOpened"
-        @filter-input="filterWasFiltered"
-        @filter-bottom-was-reached="filterWasScrolled"
       ></dropdown>
-
-      <div style="margin-left: 180px; line-height: 140%">
-        Filter is: {{ filterStatus }} <br>
-        Selected Value: {{ filterValue }} <br>
-        Filter Input Value: {{ filterInput }} <br>
-        Filter was scrolled to bottom: {{ filterBottom }} <br>
-      </div>
     </div>
   </div>
 </template>
