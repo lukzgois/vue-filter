@@ -5,6 +5,8 @@
     <ajax-loader></ajax-loader>
     <hr>
     <load-items></load-items>
+    <hr>
+    <link-filter></link-filter>
   </div>
 </template>
 
@@ -12,12 +14,14 @@
 import basicFilter from './examples/basic-filter/Index.vue'
 import ajaxLoader from './examples/ajax-load/Index.vue'
 import loadItems from './examples/load-items/Index.vue'
+import linkFilter from './examples/link-filter/Index.vue'
 
 export default {
   components: {
     basicFilter,
     ajaxLoader,
-    loadItems
+    loadItems,
+    linkFilter
   }
 }
 </script>
