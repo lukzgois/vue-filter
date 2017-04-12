@@ -9,6 +9,8 @@
     <link-filter></link-filter>
     <hr>
     <multiple-selection></multiple-selection>
+    <hr>
+    <footer-click></footer-click>
   </div>
 </template>
 
@@ -18,6 +20,7 @@ import ajaxLoader from './examples/ajax-load/Index.vue'
 import loadItems from './examples/load-items/Index.vue'
 import linkFilter from './examples/link-filter/Index.vue'
 import multipleSelection from './examples/multiple-selection/Index.vue'
+import footerClick from './examples/footer-click/Index.vue'
 
 export default {
   components: {
@@ -25,7 +28,8 @@ export default {
     ajaxLoader,
     loadItems,
     linkFilter,
-    multipleSelection
+    multipleSelection,
+    footerClick
   }
 }
 </script>
