@@ -106,12 +106,16 @@ export default {
     renderAsLink: {
       type: Boolean,
       default: false
+    },
+    multiple: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
     return {
       isOpen: false,
-      selectedValue: null,
+      selectedValue: [],
       filterInputValue: ''
     }
   },
@@ -193,7 +197,19 @@ export default {
       this.selectedValue = value
       this.isOpen = false
 
-      let oldSelection = window.document.querySelector('.filter li a.is-selected')
+      if (this.multiple) {
+        // Clearing all selected items
+        let oldSelection = this.$refs.dropdown.querySelectorAll('.filter li a.is-selected')
+        oldSelection.forEach((item) => {
+          item.classList.remove('is-selected')
+        })
+
+        e.target.classList.add('is-selected')
+
+        return
+      }
+
+      let oldSelection = this.$refs.dropdown.querySelector('.filter li a.is-selected')
       if (oldSelection) {
         oldSelection.classList.remove('is-selected')
       }
@@ -211,10 +227,31 @@ export default {
     handleItemClick (item, e) {
       const value = item.id ? item.id : item.value
 
+      if (this.multiple) {
+        if (e.target.classList.contains('is-selected')) {
+          e.target.classList.remove('is-selected')
+          let index = this.selectedValue.indexOf(value)
+          this.selectedValue.splice(index, 1)
+        } else {
+          e.target.classList.add('is-selected')
+
+          // If one of the header items was selected, we need to clear it too and change the selected value to
+          // an array to avoid errors
+          if (typeof this.selectedValue !== 'object') {
+            this.$refs.dropdown.querySelector('.filter li a.is-selected').classList.remove('is-selected')
+            this.selectedValue = []
+          }
+
+          this.selectedValue.push(value)
+        }
+
+        return
+      }
+
       this.selectedValue = value
       this.isOpen = false
 
-      let oldSelection = window.document.querySelector('.filter li a.is-selected')
+      let oldSelection = this.$refs.dropdown.querySelector('.filter li a.is-selected')
       if (oldSelection) {
         oldSelection.classList.remove('is-selected')
       }
