@@ -25,7 +25,7 @@ export default {
   name: 'app',
   data () {
     return {
-      items: {},
+      items: [],
       header,
       footer,
       loading: true,
@@ -45,7 +45,7 @@ export default {
     filterWasClosed () {
       clearTimeout(this.timeout)
       this.loading = true
-      this.items = {}
+      this.items = []
     }
   }
 }
