@@ -48,7 +48,10 @@
       <div class="dropdown-footer" v-if="footer">
         <ul>
           <li v-for="item in footer">
-            <a href="#">{{ item.text }}</a>
+            <a
+              href="#"
+              @click.prevent="handleFooterClick(item, $event)"
+            >{{ item.text }}</a>
           </li>
         </ul>
       </div>
@@ -192,7 +195,7 @@ export default {
      * @return {void}
      */
     handleHeaderClick (item, e) {
-      const value = item.id ? item.id : item.value
+      const value = item.id ? item.id : item.text
 
       this.selectedValue = value
       this.isOpen = false
@@ -225,7 +228,7 @@ export default {
      * @return {void}
      */
     handleItemClick (item, e) {
-      const value = item.id ? item.id : item.value
+      const value = item.id ? item.id : item.text
 
       if (this.multiple) {
         if (e.target.classList.contains('is-selected')) {
@@ -257,6 +260,18 @@ export default {
       }
 
       e.target.classList.add('is-selected')
+    },
+
+    /**
+     * Handle the click on an item in the footer section.
+     *
+     * @param  {Object} item
+     * @param  {Event} e
+     * @return {void}
+     */
+    handleFooterClick (item, e) {
+      const value = item.id ? item.id : item.text
+      this.$emit('footer-was-clicked', value)
     },
 
     /**
