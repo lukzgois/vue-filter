@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h3>Basic Filter <small>(filter basics functions)</small></h3>
+    <h3>Link instead of a button</small></h3>
     <div class="filter-container">
       <dropdown
         title="Filter by label"

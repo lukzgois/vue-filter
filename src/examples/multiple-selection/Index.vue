@@ -9,7 +9,12 @@
         :footer="footer"
         :header="header"
         :multiple="true"
+        @filter-closed="filterWasClosed"
       ></dropdown>
+
+      <div style="margin-left: 180px; line-height: 140%">
+        Selected Value: {{ filterValue }} <br>
+      </div>
     </div>
   </div>
 </template>
@@ -33,6 +38,11 @@ export default {
   },
   components: {
     Dropdown
+  },
+  methods: {
+    filterWasClosed (value) {
+      this.filterValue = value
+    }
   }
 }
 </script>
