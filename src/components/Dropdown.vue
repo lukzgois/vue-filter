@@ -199,6 +199,7 @@ export default {
 
       this.selectedValue = value
       this.isOpen = false
+      this.$emit('filter-selected', value)
 
       if (this.multiple) {
         // Clearing all selected items
@@ -235,6 +236,7 @@ export default {
           e.target.classList.remove('is-selected')
           let index = this.selectedValue.indexOf(value)
           this.selectedValue.splice(index, 1)
+          this.$emit('filter-selected', JSON.parse(JSON.stringify(this.selectedValue)))
         } else {
           e.target.classList.add('is-selected')
 
@@ -246,6 +248,7 @@ export default {
           }
 
           this.selectedValue.push(value)
+          this.$emit('filter-selected', JSON.parse(JSON.stringify(this.selectedValue)))
         }
 
         return
@@ -253,6 +256,7 @@ export default {
 
       this.selectedValue = value
       this.isOpen = false
+      this.$emit('filter-selected', value)
 
       let oldSelection = this.$refs.dropdown.querySelector('.filter li a.is-selected')
       if (oldSelection) {
