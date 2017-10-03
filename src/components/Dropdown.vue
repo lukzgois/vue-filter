@@ -25,7 +25,7 @@
       </div>
 
       <div class="dropdown-content">
-        <ul class="dropdown-header-items" v-if="header">
+        <ul class="dropdown-header-items" v-if="header.length">
           <li v-for="item in header">
             <a
               href="#"
@@ -45,7 +45,7 @@
         </ul>
       </div>
 
-      <div class="dropdown-footer" v-if="footer">
+      <div class="dropdown-footer" v-if="footer.length">
         <ul>
           <li v-for="item in footer">
             <a
